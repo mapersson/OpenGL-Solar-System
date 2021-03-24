@@ -51,8 +51,8 @@ int main()
 	RandomMode* transOffset2 = new RandomMode(0, 2.0f, 0.001f);
 	RandomMode* transOffsetZ2 = new RandomMode(0, 5.0f, 0.001f);
 
-
-	Camera_Control myCamera = Camera_Control(glm::vec3(0.0f, 0.0f, 5.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 0.002f, 0.05f);
+	// Camera is positioned on the xy plane @ z = -5. Looks towards the origin at 0,0,0 
+	Camera_Control myCamera = Camera_Control(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 0.002f, 0.05f);
 	
 	deltaTime = prevTime = 0;
 
@@ -112,8 +112,8 @@ int main()
 		
 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(transOffset->genCurrentValue(), 0.0f, transOffsetZ->genCurrentValue()));
-		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(1.0f, rotateYAxis->genCurrentValue(), 0.75f));
+		//model = glm::translate(model, glm::vec3(transOffset->genCurrentValue(), 0.0f, transOffsetZ->genCurrentValue()));
+		//model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(1.0f, rotateYAxis->genCurrentValue(), 0.75f));
 		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 
 		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
@@ -132,33 +132,6 @@ int main()
 		woodTexture.applyTexture();
 		side3->RenderMeshModel();
 
-		
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(transOffset->genCurrentValue(), 0.0f, transOffsetZ->genCurrentValue()));
-		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(1.0f, 1.0f, 1.0f));
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-
-		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
-		glUniformMatrix4fv(myShader->getCameraViewLoc(), 1, GL_FALSE, glm::value_ptr(myCamera.calculateCameraViewMatrix()));
-		glUniformMatrix4fv(myShader->getUnifromProjectionLoc(), 1, GL_FALSE, glm::value_ptr(projection));
-		
-		//wallTexture.applyTexture();
-		//triangle->RenderMeshModel();
-
-
-		model=glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(transOffset2->genCurrentValue(), 0.0f, -transOffsetZ2->genCurrentValue()));
-		model = glm::rotate(model, glm::radians(rotateOffest2->genCurrentValue()), glm::vec3(1.0f, 1.0f, -1.0f));
-		model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.25f));
-
-
-		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
-		glUniformMatrix4fv(myShader->getCameraViewLoc(), 1, GL_FALSE, glm::value_ptr(myCamera.calculateCameraViewMatrix()));
-		glUniformMatrix4fv(myShader->getUnifromProjectionLoc(), 1, GL_FALSE, glm::value_ptr(projection));
-
-		
-		//brickTexture.applyTexture();
-		//cube->RenderMeshModel();
 		
 		glUseProgram(0);
 		myWindow.swapBuffers(); //Swap buffers, OpenGL main tains two Buffers, One is displayed, one is getting prepared
