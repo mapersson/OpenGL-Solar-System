@@ -40,6 +40,7 @@ int main()
 	MeshModel* side1 = new MeshModel(1);
 	MeshModel* side2 = new MeshModel(2);
 	MeshModel* side3 = new MeshModel(3);
+	MeshModel* side99 = new MeshModel(99);
 
 	RandomMode* rotateOffest = new RandomMode(0, 360.0f, 0.5f, true);
 	RandomMode* transOffset = new RandomMode(0, 0.5f, 0.0005f);
@@ -52,7 +53,7 @@ int main()
 	RandomMode* transOffsetZ2 = new RandomMode(0, 5.0f, 0.001f);
 
 	// Camera is positioned on the xy plane @ z = -5. Looks towards the origin at 0,0,0 
-	Camera_Control myCamera = Camera_Control(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 0.002f, 0.05f);
+	Camera_Control myCamera = Camera_Control(glm::vec3(0.0f, 0.0f, -6.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 0.002f, 0.05f);
 	
 	deltaTime = prevTime = 0;
 
@@ -109,12 +110,56 @@ int main()
 		spaceTop->RenderMeshModel();
 		spaceBack->RenderMeshModel();
 		spaceBottom->RenderMeshModel();
+
 		
+#pragma region Moon 1
 
 		model = glm::mat4(1.0f);
-		//model = glm::translate(model, glm::vec3(transOffset->genCurrentValue(), 0.0f, transOffsetZ->genCurrentValue()));
-		//model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(1.0f, rotateYAxis->genCurrentValue(), 0.75f));
-		model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+		//Match Planet 1 rotation
+		model = glm::rotate(model, glm::radians(rotateOffest2->genCurrentValue()), glm::vec3(0.0f, 0.0f, 1.0f));
+		//Transate to the location of Plant 1
+		model = glm::translate(model, glm::vec3(4.0f, 0.0f, 0.0f));
+		// Rotation around Planet 1
+		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, 0.0f, -1.0f));
+		// Translation to the location of the Moon around Plant 1. 
+		model = glm::translate(model, glm::vec3(1.0f, 0.0f, 0.0f));
+		// Rotation of the Moon around its own access. 
+		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.25f));
+
+		
+		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(myShader->getCameraViewLoc(), 1, GL_FALSE, glm::value_ptr(myCamera.calculateCameraViewMatrix()));
+		glUniformMatrix4fv(myShader->getUnifromProjectionLoc(), 1, GL_FALSE, glm::value_ptr(projection));
+
+		birdTexture.applyTexture();
+		side0->RenderMeshModel();
+
+		brickTexture.applyTexture();
+		side1->RenderMeshModel();
+
+		rockTexture.applyTexture();
+		side2->RenderMeshModel();
+
+		woodTexture.applyTexture();
+		side3->RenderMeshModel();
+
+#pragma endregion
+
+
+
+
+		// Planet 1 
+#pragma region Planet 1
+
+		model = glm::mat4(1.0f);
+		// Rotation around the Sun. 
+		model = glm::rotate(model, glm::radians(rotateOffest2->genCurrentValue()), glm::vec3(0.0f, 0.0f, 1.0f));
+		// Translate to the location of the orbit aorund the Sun
+		model = glm::translate(model, glm::vec3(4.0f, 0.0f, 0.0f));
+		// Rotation of Planet 1 around its axis
+		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.25f));
 
 		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
 		glUniformMatrix4fv(myShader->getCameraViewLoc(), 1, GL_FALSE, glm::value_ptr(myCamera.calculateCameraViewMatrix()));
@@ -132,7 +177,33 @@ int main()
 		woodTexture.applyTexture();
 		side3->RenderMeshModel();
 
-		
+#pragma endregion
+
+
+#pragma region Planet 2
+
+		model = glm::mat4(1.0f);
+		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, 0.0f, 1.0f));
+
+		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(myShader->getCameraViewLoc(), 1, GL_FALSE, glm::value_ptr(myCamera.calculateCameraViewMatrix()));
+		glUniformMatrix4fv(myShader->getUnifromProjectionLoc(), 1, GL_FALSE, glm::value_ptr(projection));
+
+		birdTexture.applyTexture();
+		side99->RenderMeshModel();
+/*
+		brickTexture.applyTexture();
+		side1->RenderMeshModel();
+
+		rockTexture.applyTexture();
+		side2->RenderMeshModel();
+
+		woodTexture.applyTexture();
+		side3->RenderMeshModel();
+		*/
+#pragma endregion
+
+
 		glUseProgram(0);
 		myWindow.swapBuffers(); //Swap buffers, OpenGL main tains two Buffers, One is displayed, one is getting prepared
 	}

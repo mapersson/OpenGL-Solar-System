@@ -75,7 +75,7 @@ MeshModel::MeshModel(int side)
 		iCount = 3;
 		CreateObjectModel(vertices, indices, vCount, iCount);
 	}
-	else {
+	else if (side == 3) {
 		unsigned int indices[] = {
 
 		3, 2, 1,	//bottom
@@ -87,6 +87,23 @@ MeshModel::MeshModel(int side)
 			0.0f, 0.0f, 1.0f, 0.5f, 1.0f,   //back right, point 1 //
 			1.0f, 0.0f, 1.0f, 1.0f, 0.0f,   //front left, point 2
 			0.5f, 0.0f, 0.0f, 0.0f, 0.0f	//back left, point 3
+		};
+		vCount = 20;
+		iCount = 3;
+		CreateObjectModel(vertices, indices, vCount, iCount);
+	}
+	else {
+		unsigned int indices[] = {
+
+		3, 2, 1,	//bottom
+		};
+
+		GLfloat vertices[] = {
+			//	x   y   z		u	  v
+			1.0f, 1.0f, 0.0f, 0.5f, 1.0f,   //front right, point 0 //
+			-1.0f, -0.33f, 0.0f, 0.5f, 1.0f,   //back right, point 1 //
+			1.0f, -0.33f, 0.0f, 1.0f, 0.0f,   //front left, point 2
+			0.0f, 1.0f, 0.0f, 0.0f, 0.0f	//back left, point 3
 		};
 		vCount = 20;
 		iCount = 3;
