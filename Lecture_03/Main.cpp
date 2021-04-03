@@ -44,8 +44,12 @@ int main()
 	MeshModel* side99 = new MeshModel(99);
 
 	//External 3D Models 
-	ImportedModel xwingModel = ImportedModel();
-	xwingModel.LoadModel("3DModels/Earth2K.obj");
+	ImportedModel earth = ImportedModel();
+	earth.LoadModel("3DModels/Earth2K.obj");
+
+	ImportedModel moon = ImportedModel();
+	moon.LoadModel("3DModels/Earth2K.obj");
+
 
 	RandomMode* rotateOffest = new RandomMode(0, 360.0f, 0.5f, true);
 	RandomMode* transOffset = new RandomMode(0, 0.5f, 0.0005f);
@@ -209,18 +213,26 @@ int main()
 */
 #pragma endregion
 	
-#pragma region 3DModel 
+#pragma region Earth 
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(1.0f, -1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
+		earth.RenderModel();
+#pragma endregion 
+
+#pragma region Moon 
+		model = glm::mat4(1.0f);
+		model = glm::rotate(model, glm::radians(rotateOffest2->genCurrentValue()), glm::vec3(0.4f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, -1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
-		//floorTexture.applyTexture();
-		//wallPyramid.UseMaterialProperty(myShader->GetSpecularIntensity(), myShader->GetShininess());
-		//bkgFloor->RenderMeshModel();
-
-		xwingModel.RenderModel();
-
+		moon.RenderModel();
 #pragma endregion 
+
+
+
 		glUseProgram(0);
 		myWindow.swapBuffers(); //Swap buffers, OpenGL main tains two Buffers, One is displayed, one is getting prepared
 	}
