@@ -16,6 +16,7 @@
 #include"GLWindow.h"
 #include"RandomMode.h"
 #include "Camera_Control.h"
+#include "ImportedModel.h"
 
 using namespace std;
 
@@ -41,6 +42,10 @@ int main()
 	MeshModel* side2 = new MeshModel(2);
 	MeshModel* side3 = new MeshModel(3);
 	MeshModel* side99 = new MeshModel(99);
+
+	//External 3D Models 
+	ImportedModel xwingModel = ImportedModel();
+	xwingModel.LoadModel("3DModels/Earth2K.obj");
 
 	RandomMode* rotateOffest = new RandomMode(0, 360.0f, 0.5f, true);
 	RandomMode* transOffset = new RandomMode(0, 0.5f, 0.0005f);
@@ -181,7 +186,7 @@ int main()
 
 
 #pragma region Planet 2
-
+/*
 		model = glm::mat4(1.0f);
 		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, 0.0f, 1.0f));
 
@@ -191,7 +196,7 @@ int main()
 
 		birdTexture.applyTexture();
 		side99->RenderMeshModel();
-/*
+
 		brickTexture.applyTexture();
 		side1->RenderMeshModel();
 
@@ -200,10 +205,22 @@ int main()
 
 		woodTexture.applyTexture();
 		side3->RenderMeshModel();
-		*/
+		
+*/
 #pragma endregion
+	
+#pragma region 3DModel 
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(1.0f, -1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
+		//floorTexture.applyTexture();
+		//wallPyramid.UseMaterialProperty(myShader->GetSpecularIntensity(), myShader->GetShininess());
+		//bkgFloor->RenderMeshModel();
 
+		xwingModel.RenderModel();
 
+#pragma endregion 
 		glUseProgram(0);
 		myWindow.swapBuffers(); //Swap buffers, OpenGL main tains two Buffers, One is displayed, one is getting prepared
 	}

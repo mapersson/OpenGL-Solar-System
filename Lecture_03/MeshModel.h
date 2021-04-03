@@ -11,6 +11,7 @@ public:
 	MeshModel(string name);
 	void RenderMeshModel();
 	void CreateObjectModel(GLfloat* vertices, unsigned int* indices, unsigned int nVertices, unsigned int nIndices);
+	void CreateMeshModel(GLfloat* vertices, unsigned int* indices, unsigned int nVertices, unsigned int nIndices);
 	~MeshModel();
 
 private:

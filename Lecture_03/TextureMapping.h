@@ -6,8 +6,8 @@ class TextureMapping
 public:
 	TextureMapping();
 	TextureMapping(char* myFilePath);
-	void LoadTextureRGBA();
-	void LoadTextureRGB();
+	bool LoadTextureRGBA();
+	bool LoadTextureRGB();
 	void applyTexture();
 	void ClearTexture();
 	~TextureMapping();
