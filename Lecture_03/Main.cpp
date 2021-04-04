@@ -48,7 +48,10 @@ int main()
 	earth.LoadModel("3DModels/Earth2K.obj");
 
 	ImportedModel moon = ImportedModel();
-	moon.LoadModel("3DModels/Earth2K.obj");
+	moon.LoadModel("3DModels/moon.obj");
+
+	ImportedModel sun = ImportedModel();
+	sun.LoadModel("3DModels/sun-v2.obj");
 
 
 	RandomMode* rotateOffest = new RandomMode(0, 360.0f, 0.5f, true);
@@ -189,32 +192,20 @@ int main()
 #pragma endregion
 
 
-#pragma region Planet 2
-/*
+#pragma region Sun
 		model = glm::mat4(1.0f);
-		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, 0.0f, 1.0f));
-
+		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
-		glUniformMatrix4fv(myShader->getCameraViewLoc(), 1, GL_FALSE, glm::value_ptr(myCamera.calculateCameraViewMatrix()));
-		glUniformMatrix4fv(myShader->getUnifromProjectionLoc(), 1, GL_FALSE, glm::value_ptr(projection));
+		sun.RenderModel();
 
-		birdTexture.applyTexture();
-		side99->RenderMeshModel();
-
-		brickTexture.applyTexture();
-		side1->RenderMeshModel();
-
-		rockTexture.applyTexture();
-		side2->RenderMeshModel();
-
-		woodTexture.applyTexture();
-		side3->RenderMeshModel();
-		
-*/
 #pragma endregion
-	
+
 #pragma region Earth 
 		model = glm::mat4(1.0f);
+		//Copy to orbiting objects
+			model = glm::rotate(model, glm::radians(rotateOffest2->genCurrentValue()), glm::vec3(0.4f, 1.0f, 0.0f));
+			model = glm::translate(model, glm::vec3(5.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
 		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
@@ -223,6 +214,8 @@ int main()
 
 #pragma region Moon 
 		model = glm::mat4(1.0f);
+		model = glm::rotate(model, glm::radians(rotateOffest2->genCurrentValue()), glm::vec3(0.4f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(5.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotateOffest2->genCurrentValue()), glm::vec3(0.4f, 1.0f, 0.0f));
 		model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
 		model = glm::rotate(model, glm::radians(rotateOffest->genCurrentValue()), glm::vec3(0.0f, -1.0f, 0.0f));
