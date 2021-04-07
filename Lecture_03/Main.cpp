@@ -55,6 +55,9 @@ int main()
 	ImportedModel sun = ImportedModel();
 	sun.LoadModel("3DModels/sun-v2.obj");
 
+	ImportedModel xwing = ImportedModel();
+	xwing.LoadModel("3DModels/x-wing.obj");
+
 
 	RandomMode* rotateOffest = new RandomMode(0, 360.0f, 0.5f, true);
 	RandomMode* transOffset = new RandomMode(0, 0.5f, 0.0005f);
@@ -241,7 +244,19 @@ int main()
 		moon.RenderModel();
 #pragma endregion 
 
+#pragma region X-Wing
+		model = glm::mat4(1.0f);
+		model = glm::rotate(model, glm::radians(rotateOffest2->genCurrentValue()), glm::vec3(0.4f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(5.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotateOffest2->genCurrentValue()*2.0f), glm::vec3(0.4f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(0.001f, 0.001f, 0.001f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.4f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-1400.0172f, -108.2528f, 1722.1118f));
+		glUniformMatrix4fv(myShader->getUnifromModelLoc(), 1, GL_FALSE, glm::value_ptr(model));
+		xwing.RenderModel();
 
+#pragma endregion
 
 		glUseProgram(0);
 		myWindow.swapBuffers(); //Swap buffers, OpenGL main tains two Buffers, One is displayed, one is getting prepared
