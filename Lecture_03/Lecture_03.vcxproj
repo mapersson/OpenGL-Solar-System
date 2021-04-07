@@ -165,21 +165,30 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera_Control.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="GLWindow.cpp" />
     <ClCompile Include="ImportedModel.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MaterialProperty.cpp" />
     <ClCompile Include="MeshModel.cpp" />
     <ClCompile Include="Model2D.cpp" />
+    <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="randomMode.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="TextureMapping.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera_Control.h" />
+    <ClInclude Include="ConstVar.h" />
+    <ClInclude Include="DirectionalLight.h" />
     <ClInclude Include="GLWindow.h" />
     <ClInclude Include="ImportedModel.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="MaterialProperty.h" />
     <ClInclude Include="MeshModel.h" />
     <ClInclude Include="Model2D.h" />
+    <ClInclude Include="PointLight.h" />
     <ClInclude Include="randomMode.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />

@@ -17,6 +17,8 @@
 #include"RandomMode.h"
 #include "Camera_Control.h"
 #include "ImportedModel.h"
+#include "Light.h"
+#include "MaterialProperty.h"
 
 using namespace std;
 
@@ -65,7 +67,34 @@ int main()
 	RandomMode* transOffsetZ2 = new RandomMode(0, 5.0f, 0.001f);
 
 	// Camera is positioned on the xy plane @ z = -5. Looks towards the origin at 0,0,0 
-	Camera_Control myCamera = Camera_Control(glm::vec3(0.0f, 0.0f, -6.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 0.002f, 0.05f);
+	Camera_Control myCamera = Camera_Control(glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 0.002f, 0.05f);
+
+	DirectionalLight ambientDiffuseLight = DirectionalLight(1.0f, 1.0f, 1.0f, 0.75f, 1.0f, 0.0f, 0.0f, 0.0f); //color+ambient intensity
+	PointLight pointLights[MAX_POINT_LIGHTS];
+	unsigned int pointLightCount = 0;
+
+	pointLights[0] = PointLight(1.0f, 1.0f, 1.0f,
+		2.0f, 10.0f,
+		0.0f, 0.0f, 0.0f,
+		0.3f, 0.3f, 0.3f);
+	pointLightCount++;
+/*
+	pointLights[1] = PointLight(1.0f, 0.0f, 0.0f,
+		0.1f, 0.7f,
+		-5.0f, 0.0f, 5.0f,
+		0.3f, 0.2f, 0.1f);
+	pointLightCount++;
+
+	pointLights[2] = PointLight(0.0f, 1.0f, 0.0f,
+		0.2f, 0.7f,
+		5.0f, 0.0f, 5.0f,
+		0.1f, 0.2f, 0.3f);
+	pointLightCount++;
+	*/
+
+
+	MaterialProperty shinyPyramid = MaterialProperty(1.0f, 32);
+	MaterialProperty wallPyramid = MaterialProperty(0.2f, 2);
 	
 	deltaTime = prevTime = 0;
 
@@ -107,6 +136,8 @@ int main()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Clear window, here clear color is Blue
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		myShader->UseShader();
+		myShader->SetDirectionalLight(&ambientDiffuseLight);
+		myShader->SetPointLights(pointLights, pointLightCount);
 
 		glm::mat4 model = glm::mat4(1.0f);
 		
