@@ -121,10 +121,10 @@ MeshModel::MeshModel(string name)
 
 		GLfloat vertices[] = {
 			//	x   y   z		u	  v
-			-10.0f, -10.0f, -10.0f, 0.0f, 0.0f,   //front right, point 0 //
-			10.0f, -10.0f, -10.0f, 2.0f, 0.0f,   //back right, point 1 //
-			10.0f, 10.0f, -10.0f, 2.0f, 2.0f,   //front left, point 2
-			-10.0f, 10.0f, -10.0f, 0.0f, 2.0f,	//back left, point 3
+			-20.0f, -20.0f, -20.0f, 0.0f, 0.0f,   //front right, point 0 //
+			20.0f, -20.0f, -20.0f, 2.0f, 0.0f,   //back right, point 1 //
+			20.0f, 20.0f, -20.0f, 2.0f, 2.0f,   //front left, point 2
+			-20.0f, 20.0f, -20.0f, 0.0f, 2.0f,	//back left, point 3
 			
 		};
 
@@ -139,10 +139,10 @@ MeshModel::MeshModel(string name)
 
 		GLfloat vertices[] = {
 			//	x   y   z		u	  v
-			10.0f, -10.0f, -10.0f, 0.0f, 0.0f,   //back right, point 1 //
-			10.0f, 10.0f, -10.0f, 0.0f, 2.0f,   //front left, point 2
-			10.0f, 10.0f, 10.0f, 2.0f, 2.0f,   //back right, point 5 //
-			10.0f, -10.0f, 10.0f, 2.0f, 0.0f,   //front left, point 6
+			20.0f, -20.0f, -20.0f, 0.0f, 0.0f,   //back right, point 1 //
+			20.0f, 20.0f, -20.0f, 0.0f, 2.0f,   //front left, point 2
+			20.0f, 20.0f, 20.0f, 2.0f, 2.0f,   //back right, point 5 //
+			20.0f, -20.0f, 20.0f, 2.0f, 0.0f,   //front left, point 6
 		};
 
 		vCount = 4 * 5;
@@ -156,10 +156,10 @@ MeshModel::MeshModel(string name)
 
 		GLfloat vertices[] = {
 			//	x   y   z		u	  v
-			-10.0f, -10.0f, -10.0f, 0.0f, 0.0f,   //front right, point 0 //
-			-10.0f, 10.0f, -10.0f, 0.0f, 2.0f,	//back left, point 3
-			-10.0f, 10.0f, 10.0f, 2.0f, 2.0f,   //front right, point 4 //
-			-10.0f, -10.0f, -10.0f, 2.0f, 0.0f	//back left, point 7
+			-20.0f, -20.0f, -20.0f, 0.0f, 0.0f,   //front right, point 0 //
+			-20.0f, 20.0f, -20.0f, 0.0f, 2.0f,	//back left, point 3
+			-20.0f, 20.0f, 20.0f, 2.0f, 2.0f,   //front right, point 4 //
+			-20.0f, -20.0f, 20.0f, 2.0f, 0.0f	//back left, point 7
 		};
 
 		vCount = 4 * 5;
@@ -173,10 +173,10 @@ MeshModel::MeshModel(string name)
 
 		GLfloat vertices[] = {
 			//	x   y   z		u	  v
-			10.0f, 10.0f, -10.0f, 2.0f, 2.0f,   //front left, point 2
-			-10.0f, 10.0f, -10.0f, 0.0f, 2.0f,	//back left, point 3
-			-10.0f, 10.0f, 10.0f, 0.0f, 0.0f,   //front right, point 4 //
-			10.0f, 10.0f, 10.0f, 2.0f, 0.0f,   //back right, point 5 //
+			20.0f, 20.0f, -20.0f, 2.0f, 2.0f,   //front left, point 2
+			-20.0f, 20.0f, -20.0f, 0.0f, 2.0f,	//back left, point 3
+			-20.0f, 20.0f, 20.0f, 0.0f, 0.0f,   //front right, point 4 //
+			20.0f, 20.0f, 20.0f, 2.0f, 0.0f,   //back right, point 5 //
 		};
 
 		vCount = 4 * 5;
@@ -190,10 +190,10 @@ MeshModel::MeshModel(string name)
 
 		GLfloat vertices[] = {
 			//	x   y   z		u	  v
-			-10.0f, 10.0f, 10.0f, 0.0f, 0.0f,   //front right, point 4 //
-			10.0f, 10.0f, 10.0f, 2.0f, 0.0f,   //back right, point 5 //
-			10.0f, -10.0f, 10.0f, 2.0f, 2.0f,   //front left, point 6
-			-10.0f, -10.0f, -10.0f, 0.0f, 2.0f	//back left, point 7
+			-20.0f, 20.0f, 20.0f, 0.0f, 0.0f,   //front right, point 4 //
+			20.0f, 20.0f, 20.0f, 2.0f, 0.0f,   //back right, point 5 //
+			20.0f, -20.0f, 20.0f, 2.0f, 2.0f,   //front left, point 6
+			-20.0f, -20.0f, 20.0f, 0.0f, 2.0f	//back left, point 7
 		};
 
 		vCount = 4 * 5;
@@ -207,10 +207,10 @@ MeshModel::MeshModel(string name)
 
 		GLfloat vertices[] = {
 			//	x   y   z		u	  v
-			-10.0f, -10.0f, -10.0f, 0.0f, 0.0f,   //front right, point 0 //
-			10.0f, -10.0f, -10.0f, 2.0f, 0.0f,   //back right, point 1 //
-			10.0f, -10.0f, 10.0f, 2.0f, 2.0f,   //front left, point 6
-			-10.0f, -10.0f, -10.0f, 0.0f, 2.0f	//back left, point 7
+			-20.0f, -20.0f, -20.0f, 0.0f, 0.0f,   //front right, point 0 //
+			20.0f, -20.0f, -20.0f, 2.0f, 0.0f,   //back right, point 1 //
+			20.0f, -20.0f, 20.0f, 2.0f, 2.0f,   //front left, point 6
+			-20.0f, -20.0f, 20.0f, 0.0f, 2.0f	//back left, point 7
 		};
 
 		vCount = 4 * 5;
