@@ -66,7 +66,7 @@ int main()
 	RandomMode* transOffset2 = new RandomMode(0, 2.0f, 0.001f);
 	RandomMode* transOffsetZ2 = new RandomMode(0, 5.0f, 0.001f);
 
-	// Camera is positioned on the xy plane @ z = -5. Looks towards the origin at 0,0,0 
+	// Camera is positioned on the xy plane @ z = -10. Looks towards the origin at 0,0,0 
 	Camera_Control myCamera = Camera_Control(glm::vec3(0.0f, 0.0f, -10.0f), glm::vec3(0.0f, 1.0f, 0.0f), 90.0f, 0.0f, 0.002f, 0.05f);
 
 	DirectionalLight ambientDiffuseLight = DirectionalLight(1.0f, 1.0f, 1.0f, 0.75f, 1.0f, 0.0f, 0.0f, 0.0f); //color+ambient intensity
@@ -78,20 +78,6 @@ int main()
 		0.0f, 0.0f, 0.0f,
 		0.3f, 0.3f, 0.3f);
 	pointLightCount++;
-/*
-	pointLights[1] = PointLight(1.0f, 0.0f, 0.0f,
-		0.1f, 0.7f,
-		-5.0f, 0.0f, 5.0f,
-		0.3f, 0.2f, 0.1f);
-	pointLightCount++;
-
-	pointLights[2] = PointLight(0.0f, 1.0f, 0.0f,
-		0.2f, 0.7f,
-		5.0f, 0.0f, 5.0f,
-		0.1f, 0.2f, 0.3f);
-	pointLightCount++;
-	*/
-
 
 	MaterialProperty shinyPyramid = MaterialProperty(1.0f, 32);
 	MaterialProperty wallPyramid = MaterialProperty(0.2f, 2);

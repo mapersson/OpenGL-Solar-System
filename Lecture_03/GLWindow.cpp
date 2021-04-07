@@ -3,8 +3,8 @@
 
 GLWindow::GLWindow()
 {
-	width = 2400;
-	height = 1600;
+	width = 1200;
+	height = 800;
 }
 
 GLWindow::GLWindow(GLint windowWidth, GLint windowHeight)

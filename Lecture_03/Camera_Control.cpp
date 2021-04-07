@@ -52,6 +52,38 @@ void Camera_Control::keyboardControl(bool* kkeys, GLfloat deltaTime)
 	{
 		curPos += lookRight * keyboardMoveSpeed;
 	}
+
+	if (kkeys[GLFW_KEY_TAB] && !cameraTabbed) {
+		switch (currentView)
+		{
+		case 0:
+			curPos = glm::vec3(0.0f, 0.0f, -10.0f);
+			yaw = 90.0f;
+			pitch = 0.0f;
+			currentView++;
+			break;
+		case 1:
+			curPos = glm::vec3(0.0f, 0.0f, 10.0f);
+			yaw = 270.0f;
+			pitch = 0.0f;
+			currentView++;
+			break;
+		default:
+			curPos = glm::vec3(0.0f, 10.0f, 0.0f);
+			yaw = 0.0f;
+			pitch = -90.f;
+			currentView = 0;
+			break;
+		}
+		referenceWorldUp = glm::vec3(0.0f, 1.0f, 0.0f);
+		goFront = glm::vec3(0.0f, 0.0f, -1.0f);
+		updateAllPositions();
+		cameraTabbed = !cameraTabbed;
+	}
+	if (cameraTabbed && !kkeys[GLFW_KEY_TAB])
+	{
+		cameraTabbed = !cameraTabbed;
+	}
 }
 
 void Camera_Control::mouseControl(GLfloat xChange, GLfloat yChange, GLfloat deltaTime)

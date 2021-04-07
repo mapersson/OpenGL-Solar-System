@@ -4,7 +4,7 @@
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 #include <GLFW\glfw3.h>
-
+#include <iostream>
 
 class Camera_Control
 {
@@ -29,6 +29,8 @@ private:
 
 	GLfloat keyboardMoveSpeed;
 	GLfloat mouseMoveSpeeed;
+	bool cameraTabbed = false;
+	GLuint currentView = 0;
 
 	void updateAllPositions();
 };
