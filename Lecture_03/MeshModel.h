@@ -7,7 +7,6 @@ class MeshModel
 {
 public:
 	MeshModel();
-	MeshModel(int side);
 	MeshModel(string name);
 	void RenderMeshModel();
 	void CreateObjectModel(GLfloat* vertices, unsigned int* indices, unsigned int nVertices, unsigned int nIndices);

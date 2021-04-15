@@ -25,95 +25,10 @@ MeshModel::MeshModel()
 
 }
 
-MeshModel::MeshModel(int side)
-{
-	if (side == 0) {
-		unsigned int indices[] = {
-		0, 1, 2,   //front
-		};
-
-		GLfloat vertices[] = {
-			//	x   y   z		u	  v
-			0.5f, 1.0f, 0.5f, 0.5f, 1.0f,   //front right, point 0 //
-			0.0f, 0.0f, 1.0f, 0.0f, 0.0f,   //back right, point 1 //
-			1.0f, 0.0f, 1.0f, 1.0f, 0.0f,   //front left, point 2
-			0.5f, 0.0f, 0.0f, 0.5f, 0.0f	//back left, point 3
-		};
-		vCount = 20;
-		iCount = 3;
-		CreateObjectModel(vertices, indices, vCount, iCount);
-	}
-	else if (side == 1) {
-		unsigned int indices[] = {
-		0, 2, 3,   //right 
-		};
-
-		GLfloat vertices[] = {
-			//	x   y   z		u	  v
-			0.5f, 1.0f, 0.5f, 0.5f, 1.0f,   //front right, point 0 //
-			0.0f, 0.0f, 1.0f, 0.0f, 0.0f,   //back right, point 1 //
-			1.0f, 0.0f, 1.0f, 1.0f, 0.0f,   //front left, point 2
-			0.5f, 0.0f, 0.0f, 0.0f, 0.0f	//back left, point 3
-		};
-		vCount = 20;
-		iCount = 3;
-		CreateObjectModel(vertices, indices, vCount, iCount);
-	}
-	else if (side == 2) {
-		unsigned int indices[] = {
-		0, 3, 1,   //left
-		};
-
-		GLfloat vertices[] = {
-			//	x   y   z		u	  v
-			0.5f, 1.0f, 0.5f, 0.5f, 1.0f,   //front right, point 0 //
-			0.0f, 0.0f, 1.0f, 0.0f, 0.0f,   //back right, point 1 //
-			1.0f, 0.0f, 1.0f, 1.0f, 0.0f,   //front left, point 2
-			0.5f, 0.0f, 0.0f, 0.5f, 0.0f	//back left, point 3
-		};
-		vCount = 20;
-		iCount = 3;
-		CreateObjectModel(vertices, indices, vCount, iCount);
-	}
-	else if (side == 3) {
-		unsigned int indices[] = {
-
-		3, 2, 1,	//bottom
-		};
-
-		GLfloat vertices[] = {
-			//	x   y   z		u	  v
-			0.5f, 1.0f, 0.5f, 0.5f, 1.0f,   //front right, point 0 //
-			0.0f, 0.0f, 1.0f, 0.5f, 1.0f,   //back right, point 1 //
-			1.0f, 0.0f, 1.0f, 1.0f, 0.0f,   //front left, point 2
-			0.5f, 0.0f, 0.0f, 0.0f, 0.0f	//back left, point 3
-		};
-		vCount = 20;
-		iCount = 3;
-		CreateObjectModel(vertices, indices, vCount, iCount);
-	}
-	else {
-		unsigned int indices[] = {
-
-		3, 2, 1,	//bottom
-		};
-
-		GLfloat vertices[] = {
-			//	x   y   z		u	  v
-			1.0f, 1.0f, 0.0f, 0.5f, 1.0f,   //front right, point 0 //
-			-1.0f, -0.33f, 0.0f, 0.5f, 1.0f,   //back right, point 1 //
-			1.0f, -0.33f, 0.0f, 1.0f, 0.0f,   //front left, point 2
-			0.0f, 1.0f, 0.0f, 0.0f, 0.0f	//back left, point 3
-		};
-		vCount = 20;
-		iCount = 3;
-		CreateObjectModel(vertices, indices, vCount, iCount);
-	}
-	
-}
 
 MeshModel::MeshModel(string name)
 {
+
 	if (name == "SpaceFront") {
 		unsigned int indices[] = {
 		0, 1, 2, 0, 3, 2
@@ -217,7 +132,7 @@ MeshModel::MeshModel(string name)
 		iCount = 6;
 		CreateObjectModel(vertices, indices, vCount, iCount);
 	}
-
+	
 }
 
 void MeshModel::CreateObjectModel(GLfloat* vertices, unsigned int* indices, unsigned int nVertices, unsigned int nIndices)
@@ -302,10 +217,6 @@ void MeshModel::RenderMeshModel()
 	{
 
 		glBindVertexArray(VAO);
-		/*
-		//glDrawArrays(GL_TRIANGLES, 0, 3);
-		glDrawArrays(GL_TRIANGLES, 0, 12);
-		*/
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
 		glDrawElements(GL_TRIANGLES, iCount, GL_UNSIGNED_INT, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -315,7 +226,6 @@ void MeshModel::RenderMeshModel()
 	else
 	{
 		glBindVertexArray(VAO);
-		//glDrawArrays(GL_TRIANGLES, 0, 3);
 		glDrawArrays(GL_TRIANGLES, 0, vCount);
 		glBindVertexArray(0);
 	}
